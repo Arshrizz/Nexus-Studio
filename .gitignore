@@ -1,0 +1,20 @@
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Workspace specific
+.vscode/
+.idea/
+*.log
+
+# Subfolders
+frontend/node_modules/
+frontend/dist/
+backend/venv/
+backend/__pycache__/
+.env

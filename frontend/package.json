@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/drei": "9.100.0",
+    "@react-three/fiber": "8.16.2",
+    "@supabase/supabase-js": "^2.48.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "latest",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "latest",
+    "styled-components": "^6.3.12",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^4.0.0",
+    "three": "0.158.0",
+    "tslib": "^2.6.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "vite": "^6.0.0"
+  }
+}
