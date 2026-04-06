@@ -28,6 +28,12 @@ const StudioPage = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [projects, setProjects] = useState([]);
   const [assets, setAssets] = useState([]);
+  const [analytics, setAnalytics] = useState({
+    project_views: 0,
+    build_success: "0%",
+    storage_used: "0 GB / 10 GB",
+    recent_activity: []
+  });
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();

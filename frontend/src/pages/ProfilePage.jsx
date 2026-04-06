@@ -64,7 +64,7 @@ const ProfilePage = () => {
           full_name: profileData.full_name || '',
           bio: profileData.bio || '',
           location: profileData.location || '',
-          expertise: profileData.expertise || []
+          expertise: Array.isArray(profileData.expertise) ? profileData.expertise : []
         });
         setProjects(projectsData);
       } catch (err) {
@@ -86,7 +86,7 @@ const ProfilePage = () => {
         body: JSON.stringify(editData),
       });
       
-      if (res.ok) {
+      if (response.ok) {
         setProfile({ ...profile, ...editData });
         setIsEditing(false);
       }

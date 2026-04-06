@@ -11,7 +11,7 @@ CREATE TABLE public.profiles (
   full_name text,
   bio text,
   location text,
-  expertise text,
+  expertise text[],
   avatar_url text,
   created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
 );

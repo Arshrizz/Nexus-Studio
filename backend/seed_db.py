@@ -30,37 +30,37 @@ def seed():
                 username = EXCLUDED.username,
                 email = EXCLUDED.email,
                 password = EXCLUDED.password
-        """, (u1_id, "testuser", "test@gmail.com", u1_pass, "Nexus Creator", "Lead visionary at Nexus Studio.", "New York, NY", "System Architecture", "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser"))
+        """, (u1_id, "testuser", "test@gmail.com", u1_pass, "Nexus Creator", "Lead visionary at Nexus Studio.", "New York, NY", ["System Architecture", "Neural Networks"], "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser"))
 
         # User 2: testuser2
         u2_id = 'b1a0e0e0-e0e0-4000-8000-000000000002'
         u2_pass = pwd_context.hash("test")
         cur.execute("""
-            INSERT INTO public.profiles (id, username, email, password, full_name, bio, avatar_url)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO public.profiles (id, username, email, password, full_name, bio, expertise, avatar_url)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (id) DO UPDATE SET 
                 username = EXCLUDED.username,
                 email = EXCLUDED.email,
                 password = EXCLUDED.password
-        """, (u2_id, "testuser2", "test2@gmail.com", u2_pass, "Lab Associate", "Exploring the limits of GPU compute.", "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser2"))
+        """, (u2_id, "testuser2", "test2@gmail.com", u2_pass, "Lab Associate", "Exploring the limits of GPU compute.", ["Graphics", "CUDA"], "https://api.dicebear.com/7.x/avataaars/svg?seed=testuser2"))
 
         print("Seeding mock projects...")
         
         projects = [
-            ("Neural Engine Core", "Real-time synaptic mapping for edge devices.", "AI & Neural", ["TensorFlow", "React", "Rust"], u1_id, "active"),
-            ("Quantum Viz", "3D Quantum State Visualizer.", "Web Experiments", ["React", "Threejs"], u1_id, "active"),
-            ("Neon Synapse", "Low-latency biosensor dashboard.", "Biotech", ["Python", "Vite", "D3.js"], u2_id, "active"),
-            ("Nexus OS Interface", "Conceptual UI for spatial computing.", "Design", ["Figma", "Swift"], u1_id, "archived")
+            ("Neural Engine Core", "Real-time synaptic mapping for edge devices.", "AI & Neural", ["TensorFlow", "React", "Rust"], u1_id, "active", "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"),
+            ("Quantum Viz", "3D Quantum State Visualizer.", "Web Experiments", ["React", "Threejs"], u1_id, "active", "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80"),
+            ("Neon Synapse", "Low-latency biosensor dashboard.", "Biotech", ["Python", "Vite", "D3.js"], u2_id, "active", "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80"),
+            ("Nexus OS Interface", "Conceptual UI for spatial computing.", "Design", ["Figma", "Swift"], u1_id, "archived", "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80")
         ]
 
         # Clear existing projects to avoid duplicates during seeding
         cur.execute("DELETE FROM public.projects")
 
-        for title, desc, cat, tags, owner, status in projects:
+        for title, desc, cat, tags, owner, status, img in projects:
             cur.execute("""
-                INSERT INTO public.projects (title, description, category, tags, owner_id, status)
-                VALUES (%s, %s, %s, %s, %s, %s)
-            """, (title, desc, cat, tags, owner, status))
+                INSERT INTO public.projects (title, description, category, tags, owner_id, status, image_url)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (title, desc, cat, tags, owner, status, img))
 
         conn.commit()
         print("Data migration and seeding complete!")
